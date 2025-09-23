@@ -29,11 +29,19 @@
 
 	<bean id="logRepository" factory-bean="logRepositoryFactory" factory-method="createRepository" />
 
+	<!--
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
 		<property name="url" value="jdbc:hsqldb:file:data/db"/>
 		<property name="username" value="sa"/>
 		<property name="password" value=""/>
+	</bean>
+	-->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver"/>
+		<property name="url" value="jdbc:postgresql://localhost:5432/mydb"/>
+		<property name="username" value="postgres"/>
+		<property name="password" value="password"/>
 	</bean>
 
 	<bean id="flyway" class="org.flywaydb.core.Flyway" init-method="migrate" depends-on="dataSource">
