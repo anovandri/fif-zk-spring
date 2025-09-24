@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -33,6 +34,15 @@ public class UserServiceImpl implements UserDetailsService {
       e.printStackTrace();
       throw new RuntimeException("Invalid Login");
     }
+  }
 
+  public Set<String> getLoggedInUserRoles() {
+    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    return getUserRoles(username);
+  }
+
+  private Set<String> getUserRoles(String username) {
+    User user = userDao.get(username);
+    return user.getRoles().stream().map(role -> role.getName()).collect(Collectors.toSet());
   }
 }

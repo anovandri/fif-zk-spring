@@ -18,7 +18,7 @@
 				<template name="model">
 					<listitem>
 						<listcell>
-							<button label="delete" onClick="@command('deleteLog', log=each)" />
+							<button label="delete" onClick="@command('deleteLog', log=each)" visible="@bind(vm.deleteButtonVisible)" />
 						</listcell>
 						<listcell>
 							<label value="@bind(each.date) @converter('formattedDate', format='yyyy/MM/dd HH:mm:ss')" />
