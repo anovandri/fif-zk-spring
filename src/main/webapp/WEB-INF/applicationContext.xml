@@ -26,8 +26,6 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
-	<bean id="securityConfig" class="com.fif.config.SecurityConfig" />
-
 	<bean id="logRepositoryFactory" class="com.fif.services.factory.LogRepositoryFactory">
 		<property name="strategy" value="database" /> 
 	</bean>
